@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="resourceFile" class="ru.otus.model.ResourceFile">
+        <constructor-arg name="name" value="test.csv"/>
+    </bean>
+    <bean id="extractor" class="ru.otus.service.ResourceExtractor">
+        <constructor-arg name="resourceFile" ref="resourceFile"/>
+    </bean>
+</beans>
