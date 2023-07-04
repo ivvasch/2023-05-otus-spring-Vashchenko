@@ -1,0 +1,10 @@
+application:
+  resourceFile: \test.csv
+  boundary: 0.75
+  locale: pl
+spring:
+  shell:
+    interactive:
+      enabled: false
+  main:
+    allow-circular-references: true
