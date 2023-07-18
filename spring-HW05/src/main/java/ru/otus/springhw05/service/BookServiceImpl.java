@@ -40,10 +40,14 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public boolean updateBook(Book book) {
-        if (!ifExist(book, book.getAuthor())) {
+        if (!ifExist(book.getAuthor())) {
+            authorService.save(book.getAuthor());
+        } else{
             authorService.update(book.getAuthor());
         }
-        if (!ifExist(book, book.getGenre())) {
+        if (!ifExist(book.getGenre())) {
+            genreService.save(book.getGenre());
+        } else {
             genreService.update(book.getGenre());
         }
         return bookDao.updateBook(book);
@@ -59,20 +63,17 @@ public class BookServiceImpl implements BookService {
         return bookDao.findAllBookByAuthorId(id);
     }
 
-    private <T> boolean ifExist(Book book, T clazz) {
-        boolean ifExist = false;
-        if (clazz instanceof Author) {
-            Author authorById = authorService.findById(book.getAuthor().getId());
-            ifExist = authorById != null
-                    && authorById.getAuthorName().equals(book.getAuthor().getAuthorName())
-                    && authorById.getId().equals(book.getAuthor().getId());
-        }
-        if (clazz instanceof Genre) {
-            Genre genreById = genreService.findById(book.getGenre().getId());
-            ifExist = genreById != null
-                    && genreById.getGenreName().equals(book.getGenre().getGenreName())
-                    && genreById.getId().equals(book.getGenre().getId());
-        }
-        return ifExist;
+    private boolean ifExist(Author author) {
+        Author authorById = authorService.findById(author.getId());
+        return authorById != null
+                && authorById.getAuthorName().equals(author.getAuthorName())
+                && authorById.getId().equals(author.getId());
+    }
+
+    private boolean ifExist(Genre genre) {
+        Genre genreById = genreService.findById(genre.getId());
+        return genreById != null
+                && genreById.getGenreName().equals(genre.getGenreName())
+                && genreById.getId().equals(genre.getId());
     }
 }

@@ -1,6 +1,5 @@
 package ru.otus.springhw05.dao;
 
-import lombok.Data;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
 import ru.otus.springhw05.mapper.GenreMapper;
@@ -8,11 +7,15 @@ import ru.otus.springhw05.model.Genre;
 
 import java.util.List;
 
-@Data
 @Repository
 public class GenreDaoImpl implements GenreDao {
 
     private final JdbcOperations jdbc;
+
+    public GenreDaoImpl(JdbcOperations jdbc) {
+        this.jdbc = jdbc;
+    }
+
     @Override
     public Integer save(Genre genre) {
         Genre genreById = findById(genre.getId());

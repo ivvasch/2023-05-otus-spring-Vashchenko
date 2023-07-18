@@ -107,7 +107,7 @@ class BookDaoImplTest {
     @DisplayName("книга успешно сохранена")
     void shouldSaveBookDao() {
         Author tolkien = new Author("5a30ae50-fea6-4070-b360-a6d6dfb057c2", "J. R. R. Tolkien");
-        authorDao.save(tolkien);
+        authorDao.insert(tolkien);
         Genre fantasy = new Genre("55d13b2d-eb93-4225-af96-0a63bcdd51cf", "Fantasy");
         genreDao.save(fantasy);
         Book bookForSave = new Book("0ad5d328-7da6-41f5-ab85-33c4f82d6a78", "The Martian Chronicles ", fantasy, tolkien);

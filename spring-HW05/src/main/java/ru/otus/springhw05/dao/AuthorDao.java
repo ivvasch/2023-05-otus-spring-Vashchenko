@@ -4,7 +4,7 @@ import ru.otus.springhw05.model.Author;
 
 public interface AuthorDao {
 
-    Integer save(Author author);
+    Integer insert(Author author);
     Author findById(String authorId);
     Author findByName(String authorName);
     boolean deleteById(String authorId);

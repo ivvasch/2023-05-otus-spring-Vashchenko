@@ -1,6 +1,5 @@
 package ru.otus.springhw05.dao;
 
-import lombok.Data;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
 import ru.otus.springhw05.mapper.AuthorMapper;
@@ -8,13 +7,17 @@ import ru.otus.springhw05.model.Author;
 
 import java.util.List;
 
-@Data
 @Repository
 public class AuthorDaoImpl implements AuthorDao {
 
     private final JdbcOperations jdbc;
+
+    public AuthorDaoImpl(JdbcOperations jdbc) {
+        this.jdbc = jdbc;
+    }
+
     @Override
-    public Integer save(Author author) {
+    public Integer insert(Author author) {
         Author authorById = findById(author.getId());
         return authorById != null ? 1 : jdbc.update("insert into t_author values (?, ?)", author.getId(), author.getAuthorName());
     }

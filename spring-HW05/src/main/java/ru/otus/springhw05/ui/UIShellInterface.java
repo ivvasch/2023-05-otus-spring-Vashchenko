@@ -93,8 +93,8 @@ public class UIShellInterface {
             if (bookById != null) {
                 if (!StringUtils.isBlank(title))
                     book.setTitle(title);
-                getGenreForUpdate(book, genreId, genreName);
-                getAuthorForUpdate(book, authorId, authorName);
+                createGenreForUpdate(book, genreId, genreName);
+                createAuthorForUpdate(book, authorId, authorName);
                 boolean isUpdateBook = bookService.updateBook(book);
                 result = getResult(bookId, isUpdateBook, UPDATE);
             }
@@ -145,7 +145,7 @@ public class UIShellInterface {
                 : Availability.unavailable("For start work with library please 'login'");
     }
 
-    private void getGenreForUpdate(Book book, String genreId, String genreName) {
+    private void createGenreForUpdate(Book book, String genreId, String genreName) {
         Genre genre;
         if (!StringUtils.isBlank(genreId) && !StringUtils.isBlank(genreName)) {
             genre = new Genre();
@@ -155,7 +155,7 @@ public class UIShellInterface {
         }
     }
 
-    private void getAuthorForUpdate(Book book, String authorId, String authorName) {
+    private void createAuthorForUpdate(Book book, String authorId, String authorName) {
         Author author;
         if (!StringUtils.isBlank(authorId) && !StringUtils.isBlank(authorName)) {
             author = new Author();

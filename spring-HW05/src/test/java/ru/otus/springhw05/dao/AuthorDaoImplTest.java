@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.otus.springhw05.model.Author;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Data
 @SpringBootTest
@@ -33,7 +34,7 @@ class AuthorDaoImplTest {
     @Test
     @DisplayName("автор сохраняется корректно")
     void shouldSaveAuthor() {
-        Integer saved = authorDao.save(author);
+        Integer saved = authorDao.insert(author);
         assertEquals(1, saved);
 
     }
@@ -42,7 +43,7 @@ class AuthorDaoImplTest {
     @DisplayName("находим автора по его id")
     void shouldfindAuthorById() {
         Author authorForSave = new Author("196718e7-742f-4542-9314-c95f62666ef7", "Antoine de Saint-Exupéry");
-        authorDao.save(authorForSave);
+        authorDao.insert(authorForSave);
         Author authorById = authorDao.findById("196718e7-742f-4542-9314-c95f62666ef7");
         assertEquals("Antoine de Saint-Exupéry", authorById.getAuthorName());
     }
@@ -50,7 +51,7 @@ class AuthorDaoImplTest {
     @Test
     @DisplayName("автор удаляется из базы")
     void shouldDeleteAuthorById() {
-        authorDao.save(author);
+        authorDao.insert(author);
         boolean deleteById = authorDao.deleteById("d0fd5b38-96a6-475f-97f3-7ff680f2be54");
         assertTrue(deleteById);
     }
@@ -58,7 +59,7 @@ class AuthorDaoImplTest {
     @Test
     @DisplayName("имя автора корректно изменяется в базе")
     void shouldUpdateAuthorName() {
-        authorDao.save(author);
+        authorDao.insert(author);
         String newName = "Ernest Miller Hemingway";
         author = new Author("d0fd5b38-96a6-475f-97f3-7ff680f2be54", newName);
         authorDao.update(author);
