@@ -11,6 +11,9 @@
     <modules>
         <module>spring-HW01</module>
         <module>spring-HW02</module>
+        <module>spring-HW03</module>
+        <module>spring-HW04</module>
+        <module>spring-HW04</module>
     </modules>
 
     <properties>
