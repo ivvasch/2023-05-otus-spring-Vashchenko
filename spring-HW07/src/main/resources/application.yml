@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:default
+#    url: jdbc:postgresql://localhost:5430/postgres
+#    username: postgres
+#    password: postgres
+  h2:
+    console:
+      enabled: true
+  liquibase:
+    enabled: true
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+server:
+  port: 9092
+
+# 746fae73-0313-4838-9798-a2c2f8b86f14 Hest ccaaf7ec-271c-4a6a-9e76-51f6fef80c39 Sholz 3f515e24-b8aa-4690-b8f2-5658f33fd1b1 lite_comedy tttcomment
