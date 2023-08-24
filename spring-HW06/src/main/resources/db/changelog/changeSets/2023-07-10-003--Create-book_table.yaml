@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2023-07-10-003
+      author: ivvasch
+      createTable:
+        tableName: t_book
+        columns:
+          - column:
+              name: id
+              type: varchar(50)
+              constraints:
+                nullable: false
+                primaryKey: true
+                primaryKeyName: pk_t_book
+          - column:
+              name: title
+              type: varchar(500)
+          - column:
+              name: genreId
+              type: varchar(50)
+              constraints:
+                nullable: false
+                foreignKeyName: fk_t_genre
+                references: t_genre(id)
+          - column:
+              name: authorId
+              type: varchar(50)
+              constraints:
+                nullable: false
+                foreignKeyName: fk_t_author
+                references: t_author(id)
