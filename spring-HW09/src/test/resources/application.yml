@@ -1,0 +1,9 @@
+spring:
+  main:
+    allow-circular-references: true
+server:
+  port: 9092
+mongock:
+  runner-type: "Applicationrunner"
+  change-logs-scan-package:
+    - ru.otus.changelog
