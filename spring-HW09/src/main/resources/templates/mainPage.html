@@ -17,6 +17,14 @@
     </div>
 </div>
 <div class="container">
+    <div class="text-right">
+        <form method="get" th:action="@{/add}">
+            <button type="submit" class="btn btn-success">Add book</button>
+            <br/>
+        </form>
+    </div>
+</div>
+<div class="container">
     <div class="row align-items-start">
         <div th:each="book : ${bookPage.content}">
             <div class="border border-success p-2 mb-2">

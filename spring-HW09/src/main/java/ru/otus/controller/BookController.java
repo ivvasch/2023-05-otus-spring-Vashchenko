@@ -29,13 +29,16 @@ public class BookController {
     }
 
 
-    @GetMapping("/main")
-    public String main() {
+    @GetMapping()
+    public String mainPage() {
         return "main";
     }
     @GetMapping("/bookpage/{id}")
     public String findBookById(@PathVariable("id") String id, Model model) {
         Book bookById = bookService.findBookById(id);
+        if (bookById == null) {
+            return "notFound";
+        }
         model.addAttribute("book", bookById);
         return "bookPage";
     }
@@ -46,8 +49,17 @@ public class BookController {
         return "editBook";
     }
     @PostMapping("/update")
-    public String getBookById(Book book) {
-        boolean updated = bookService.updateBook(book);
+    public String updateBookById(Book book) {
+        bookService.updateBook(book);
+        return "redirect:/library";
+    }
+    @GetMapping("/add")
+    public String getFormForAddBook() {
+        return "addBook";
+    }
+    @PostMapping("/add")
+    public String addBook(Book book) {
+        bookService.saveBook(book);
         return "redirect:/library";
     }
 
@@ -70,9 +82,7 @@ public class BookController {
     @GetMapping("/deletebook/{bookId}")
     public String deleteBookById(@PathVariable("bookId") String bookId) {
         Book bookById = bookService.findBookById(bookId);
-        bookById.getComments().forEach(comment -> {
-            commentService.deleteById(comment.getCommentId());
-        });
+        bookById.getComments().forEach(comment -> commentService.deleteById(comment.getCommentId()));
         bookService.deleteBookById(bookId);
         return "redirect:/library";
     }

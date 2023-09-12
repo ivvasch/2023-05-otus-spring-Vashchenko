@@ -113,7 +113,7 @@ class BookRepositoryImplTest {
     @DisplayName("получаем список книг корректно")
     void findAll() {
         List<Book> books = bookRepository.findAll();
-        assertEquals(16, books.size());
+        assertEquals(17, books.size());
     }
 
     @Test
