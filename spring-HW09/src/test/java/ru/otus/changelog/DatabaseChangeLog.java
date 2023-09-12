@@ -10,6 +10,7 @@ import ru.otus.repository.AuthorRepository;
 import ru.otus.repository.BookRepository;
 import ru.otus.repository.GenreRepository;
 
+
 @ChangeLog
 public class DatabaseChangeLog {
 

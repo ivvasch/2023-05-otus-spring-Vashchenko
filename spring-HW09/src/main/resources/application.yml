@@ -7,7 +7,7 @@ spring:
 server:
   port: 9092
 mongock:
-  runner-type: "InitializingBean"
+  runner-type: "ApplicationRunner"
   change-logs-scan-package:
     - ru.otus.mongock.changelog
 

@@ -22,6 +22,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 @SpringBootTest
 @DisplayName("При работке с bookRepository")
 class BookRepositoryImplTest {
@@ -47,10 +48,12 @@ class BookRepositoryImplTest {
     void setUp() {
         comments = new ArrayList<>();
         Comment comment = new Comment();
+        comment.setCommentId("testComment");
         comment.setComment("Дитя пещеры неплохая книжка...");
         commentRepository.save(comment);
         Comment comment2 = new Comment();
         comment2.setComment("Дитя пещеры хорошая книжка...");
+        comment2.setCommentId("testComment2");
         commentRepository.save(comment2);
         comments.add(comment2);
         comments.add(comment);
@@ -75,6 +78,7 @@ class BookRepositoryImplTest {
         assertEquals(book.getGenre().getName(), saved.getGenre().getName());
         Comment comm = new Comment();
         comm.setComment("Замечательный роман...");
+        comm.setCommentId("comm");
         comments.add(comm);
         commentRepository.save(comm);
         saved.setComments(comments);

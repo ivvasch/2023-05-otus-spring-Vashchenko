@@ -1,5 +1,9 @@
 package ru.otus.service.impl;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.model.Author;
@@ -12,6 +16,7 @@ import ru.otus.repository.CommentRepository;
 import ru.otus.repository.GenreRepository;
 import ru.otus.service.BookService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,7 +67,7 @@ public class BookServiceImpl implements BookService {
         if (!book.getComments().isEmpty()) {
             List<Comment> notSavedComments = book.getComments().stream().filter(comment -> comment.getCommentId() == null).toList();
             if (!notSavedComments.isEmpty()) {
-                notSavedComments.stream().forEach(commentRepository::save);
+                notSavedComments.forEach(commentRepository::save);
             }
         }
         return bookRepository.save(book);
@@ -85,7 +90,7 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public boolean updateBook(Book book) {
-        return bookRepository.save(book) != null;
+        return saveBook(book) != null;
     }
 
     @Override
@@ -106,6 +111,23 @@ public class BookServiceImpl implements BookService {
     public List<Book> findAll() {
         List<Book> all = bookRepository.findAll();
         return all;
+    }
+
+    @Override
+    public Page<Book> findPaginated(Pageable pageable) {
+        int pageSize = pageable.getPageSize();
+        int pageNumber = pageable.getPageNumber();
+        int startItem = pageNumber * pageSize;
+        List<Book> books = findAll();
+        List<Book> list;
+        if (books.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, books.size());
+            list = books.subList(startItem, toIndex);
+        }
+        Page<Book> bookPage = new PageImpl<>(list, PageRequest.of(pageNumber, pageSize), books.size());
+        return bookPage;
     }
 
     @Override
