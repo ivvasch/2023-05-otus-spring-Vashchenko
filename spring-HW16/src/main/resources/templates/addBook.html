@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymleaf.org">
+<head>
+    <style>
+        body {
+            background-color: #ecb378;
+        }
+    </style>
+    <title>Add book</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+          crossorigin="anonymous">
+</head>
+<body>
+<script>
+    function saveBook() {
+        const savedBookContainer = document.getElementById("saved")
+        const titleInput = document.getElementById("title")
+        const authorNameInput = document.getElementById("author-name")
+        const genreNameInput = document.getElementById("genre-name")
+        const book = { title: titleInput.value, authorName: authorNameInput.value,  genreName: genreNameInput.value}
+        fetch("api/book", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(book)})
+            .then(rawResponse => rawResponse.json())
+            .then(json => savedBookContainer.innerHTML = JSON.stringify(json, null, 4))
+    }
+</script>
+<div class="container">
+    <div class="text-left>">
+        <h3>Add book</h3>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+<form method="get" th:action="@{/library}">
+    <div class="d-grid gap-2">
+        <input type="text" id="title" placeHolder="Add title of book"/>
+        <input type="text" id="author-name" placeHolder="Add name of Author"/>
+        <input type="text" id="genre-name" placeHolder="Add name of genre"/>
+        <button class="btn btn-primary" type="button" onclick="saveBook()">Add your book</button>
+        <button class="btn btn-primary" type="submit" >Go back</button>
+    </div>
+</form>
+</body>
+</html>
