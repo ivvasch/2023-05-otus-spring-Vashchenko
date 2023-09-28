@@ -1,0 +1,32 @@
+spring:
+  data:
+    mongodb:
+      database: library
+      port: 27017
+      host: localhost
+server:
+  port: 9092
+mongock:
+  runner-type: "ApplicationRunner"
+  change-logs-scan-package:
+    - ru.otus.mongock.changelog
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  health:
+    defaults:
+      enabled: true
+logging:
+  file:
+    name: spring-HW16/src/main/resources/logs.log
+
+
+
+
+
+#  The_Adventures_of_Captain defd5e0b-1af4-45c0-a68a-1ea5a21296cf Adventure fbddd6ac-f4dd-4a39-804d-03d45d30241b Jules_Verne
