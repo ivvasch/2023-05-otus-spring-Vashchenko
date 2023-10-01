@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymleaf.org">
+<head>
+    <style>
+        body {
+            background-color: #ecb378;
+        }
+    </style>
+    <title>Book page</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="text-left>">
+        <h3>Page of book</h3>
+        <section th:text="${book.title}"></section>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+<div th:object="${book}">
+    <div class="border border-success p-2 mb-2">
+        <div class="col">
+            <span style="font-size:11px;">Title:</span> <span style="font-size:14px;"><span
+                th:text="*{title}"></span></span>
+        </div>
+        <div class="col">
+            <span style="font-size:11px;">Author: </span> <span style="font-size:14px;"><span
+                th:text="*{author.name}"></span></span>
+        </div>
+        <div class="col">
+            <span style="font-size:11px;">Genre: </span> <span style="font-size:14px;"><span
+                th:text="*{genre.name}"></span></span>
+        </div>
+        <div th:each="comment: *{comments}">
+            <div class="col">
+                <div>------------------------------------------------</div>
+                <span style="font-size:11px;">Comment: </span> <span style="font-size:14px;"><span
+                    th:text="${comment.comment}"></span></span>
+                <a th:href="@{/deletecomment/{commentId}/{bookID} (commentId = ${comment.getCommentId()}, bookID=*{id})}" class="card-link" style="font-size:10px;">Delete</a>
+                <div>------------------------------------------------</div>
+            </div>
+        </div>
+        <a th:href="@{/library}" class="card-link" style="font-size:13px;">Back to library</a>
+    </div>
+</div>
+</body>
+</html>
