@@ -1,0 +1,13 @@
+spring:
+  main:
+    allow-circular-references: true
+  data:
+    mongodb:
+      database: libraryTest
+      port: 27017
+      host: localhost
+server:
+  port: 9092
+mongock:
+  runner-type: "ApplicationRunner"
+  change-logs-scan-package: ru.otus.mongock.changelog.DatabaseChangeLog
