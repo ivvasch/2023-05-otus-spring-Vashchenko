@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2023-07-10-002
+      author: ivvasch
+      createTable:
+        tableName: t_comments
+        columns:
+          - column:
+              name: comment_id
+              type: varchar(50)
+              constraints:
+                nullable: false
+                primaryKey: true
+                primaryKeyName: pk_t_comments
+          - column:
+              name: comment
+              type: varchar(500)
+          - column:
+              name: book_id
+              type: varchar(500)
+              constraints:
+#                nullable: false
+                foreignKeyName: fk_t_book
+                references: t_book(id)
