@@ -20,6 +20,9 @@
         <module>spring-HW09</module>
         <module>spring-HW10</module>
         <module>spring-HW11</module>
+        <module>spring-HW12</module>
+        <module>spring-HW13</module>
+        <module>spring-HW15</module>
         <module>spring-HW16</module>
     </modules>
 
@@ -37,7 +40,10 @@
                 <version>1.18.20.0</version>
                 <scope>provided</scope>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-messaging</artifactId>
+            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
