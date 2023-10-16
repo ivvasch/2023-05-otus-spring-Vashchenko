@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2023-07-10-002
+      author: ivvasch
+      createTable:
+        tableName: t_genre
+        columns:
+          - column:
+              name: id
+              type: varchar(50)
+              constraints:
+#                nullable: false
+                primaryKey: true
+                primaryKeyName: pk_t_genre
+          - column:
+              name: name
+              type: varchar(50)
