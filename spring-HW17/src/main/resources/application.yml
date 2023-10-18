@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      database: library
+      port: 27017
+      host: localhost
+  application:
+    name: libraryTom
+server:
+  port: 9092
+mongock:
+  runner-type: "ApplicationRunner"
+  change-logs-scan-package:
+    - ru.otus.mongock.changelog
