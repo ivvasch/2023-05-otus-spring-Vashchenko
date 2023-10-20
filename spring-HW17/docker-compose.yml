@@ -1,0 +1,14 @@
+version: '1'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9092:9092"
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongo
+  mongo:
+    image: mongodb/mongodb-community-server
+    ports:
+      - "27017:27017"
