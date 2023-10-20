@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2023-07-10-001
+      author: ivvasch
+      createTable:
+        tableName: t_author
+        columns:
+          - column:
+              name: id
+              type: varchar(50)
+              constraints:
+#                nullable: false
+                primaryKey: true
+                primaryKeyName: pk_t_author
+          - column:
+              name: name
+              type: varchar(50)
