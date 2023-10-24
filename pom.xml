@@ -26,6 +26,7 @@
         <module>spring-HW15</module>
         <module>spring-HW16</module>
         <module>spring-HW17</module>
+        <module>spring-HW18</module>
     </modules>
 
     <properties>
